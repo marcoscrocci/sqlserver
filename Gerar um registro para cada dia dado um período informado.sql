@@ -1,0 +1,29 @@
+        DECLARE @EMPRESA VARCHAR(MAX) =  10003
+
+        DECLARE @DTINI DATETIME = CONVERT(DATETIME, '25/06/2018' ,103);
+        DECLARE @DTFIM DATETIME = CONVERT(DATETIME, '10/07/2018' ,103);
+        DECLARE @CENTRO_CUSTO INT =  -1
+DECLARE @TBDIA TABLE(DATA DATETIME);
+
+        ;WITH REGISTROPONTO(DTINICIOPLANEJADO)
+        AS
+        (
+                SELECT
+                        DATEADD(DAY, 0, DATEDIFF(DAY, 0, @DTINI)) AS DTINICIOPLANEJADO
+                UNION ALL
+                SELECT
+                        DATEADD(DAY, 1, REGISTROPONTO.DTINICIOPLANEJADO) AS DTINICIOPLANEJADO
+                FROM
+                        REGISTROPONTO
+                WHERE
+                        REGISTROPONTO.DTINICIOPLANEJADO < @DTFIM
+        )
+        INSERT INTO @TBDIA
+        SELECT
+                DTINICIOPLANEJADO
+        FROM
+                REGISTROPONTO WITH (NOLOCK)
+        OPTION
+                (MAXRECURSION 32767)
+
+SELECT * FROM @TBDIA

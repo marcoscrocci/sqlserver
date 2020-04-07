@@ -1,0 +1,1 @@
+ALTER TABLE BANCOS ALTER COLUMN FlgDtProcessamentoGerTes BIT;

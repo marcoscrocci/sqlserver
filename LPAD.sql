@@ -1,0 +1,15 @@
+DECLARE @VALOR1 VARCHAR(15) = '60 min';
+DECLARE @VALOR2 VARCHAR(15) = '150 min';
+DECLARE @RESULT VARCHAR(15) = @VALOR1;
+
+IF (REPLICATE('0', 8 - LEN(@VALOR2)) + RTrim(@VALOR2) > REPLICATE('0', 8 - LEN(@VALOR1)) + RTrim(@VALOR1)) 
+BEGIN
+  SET @RESULT = @VALOR2;
+  PRINT('VERDADE');
+END;
+
+-- Sem utilizar o comando equivalente ao LPAD o resultado seria o "60 min"
+PRINT(@RESULT);
+
+Select REPLICATE('0', 8 - LEN(@VALOR1)) + RTrim(@VALOR1) AS LPAD_VALOR1;
+Select REPLICATE('0', 8 - LEN(@VALOR2)) + RTrim(@VALOR2) AS LPAD_VALOR2;

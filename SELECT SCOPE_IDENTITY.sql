@@ -1,0 +1,33 @@
+USE [SIP_DESENV]
+GO
+
+/****** Object:  Table [dbo].[ProcessoDifCorporativo]    Script Date: 08/03/2019 16:00:48 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Teste](
+	[Codigo] [int] IDENTITY(1,1) NOT NULL,
+	[Descricao] [VARCHAR](50) NOT NULL
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+INSERT INTO [dbo].[Teste] (Descricao) VALUES ('REGISTRO001')
+SELECT (SCOPE_IDENTITY()) AS Codigo
+
+INSERT INTO [dbo].[Teste] (Descricao) VALUES ('REGISTRO002')
+SELECT (SCOPE_IDENTITY()) AS Codigo
+
+INSERT INTO [dbo].[Teste] (Descricao) VALUES ('REGISTRO003')
+SELECT (SCOPE_IDENTITY()) AS Codigo
+
+DROP TABLE [dbo].[Teste]

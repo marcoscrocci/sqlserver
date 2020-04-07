@@ -1,0 +1,16 @@
+--Gerar uma tabela a partir de uma string de caracteres separados por vírgula.
+DECLARE @ITENS VARCHAR(max), @S VARCHAR(max);
+SET @ITENS = '10,20,30';
+
+IF LEN(@ITENS) > 0 SET @ITENS = @ITENS + ','
+DECLARE @LISTA TABLE (ITEM_TEXTO VARCHAR(500))
+
+WHILE LEN(@ITENS) > 0
+BEGIN
+   SELECT @S = LTRIM(SUBSTRING(@ITENS, 1, CHARINDEX(',', @ITENS) - 1))
+   INSERT INTO @LISTA (ITEM_TEXTO) VALUES (@S)
+   SELECT @ITENS = SUBSTRING(@ITENS, CHARINDEX(',', @ITENS) + 1, LEN(@ITENS))
+END;
+
+SELECT *
+FROM   @LISTA

@@ -1,0 +1,1 @@
+SELECT CAST(switchoffset (CONVERT(datetimeoffset, GETDATE()), '-03:00') AS DATETIME) AS DATAHORAATUAL
